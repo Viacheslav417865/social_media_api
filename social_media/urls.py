@@ -21,6 +21,11 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
+        "api/social/",
+        include("social.urls",
+                namespace="social")
+    ),
+    path(
         "api/user/",
         include("user.urls",
                 namespace="user")
