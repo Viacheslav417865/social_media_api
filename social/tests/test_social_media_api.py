@@ -175,7 +175,7 @@ class PostsTests(TestCase):
         sample_post(author=self.user, profile=self.profile)
         sample_post(author=self.user, profile=self.profile)
         res = self.client.get(POST_URL)
-        posts = Post.objects.order_by("id")
+        posts = Post.objects.all().order_by("-created_at")
         serializer = PostSerializer(posts, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
