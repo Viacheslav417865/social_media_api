@@ -37,14 +37,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
         gender = self.request.query_params.get("gender")
         queryset = self.queryset
         if first_name:
-            queryset = (
-                queryset.filter(first_name__icontains=first_name))
+            queryset = queryset.filter(first_name__icontains=first_name)
         if last_name:
-            queryset = (
-                queryset.filter(last_name__icontains=last_name))
+            queryset = queryset.filter(last_name__icontains=last_name)
         if gender:
-            queryset = (
-                queryset.filter(gender=gender))
+            queryset = queryset.filter(gender=gender)
         return queryset.distinct()
 
     def perform_create(self, serializer):
@@ -62,20 +59,17 @@ class ProfileViewSet(viewsets.ModelViewSet):
             OpenApiParameter(
                 "first_name",
                 type=OpenApiTypes.STR,
-                description=
-                "Filter by first_name (ex. ?first_name=John)",
+                description="Filter by first_name (ex. ?first_name=John)",
             ),
             OpenApiParameter(
                 "last_name",
                 type=OpenApiTypes.STR,
-                description=
-                "Filter by last_name (ex. ?last_name=Smith)",
+                description="Filter by last_name (ex. ?last_name=Smith)",
             ),
             OpenApiParameter(
                 "gender",
                 type=OpenApiTypes.STR,
-                description=
-                "Filter by gender (ex. ?gender=Male)",
+                description="Filter by gender (ex. ?gender=Male)",
             ),
         ]
     )
@@ -115,14 +109,12 @@ class PostViewSet(viewsets.ModelViewSet):
             OpenApiParameter(
                 "hashtag",
                 type=OpenApiTypes.STR,
-                description=
-                "Filter by hashtag (ex. ?hashtag=#hashtag)",
+                description="Filter by hashtag (ex. ?hashtag=#hashtag)",
             ),
             OpenApiParameter(
                 "title",
                 type=OpenApiTypes.STR,
-                description=
-                "Filter by title (ex. ?title=title)",
+                description="Filter by title (ex. ?title=title)",
             ),
         ]
     )

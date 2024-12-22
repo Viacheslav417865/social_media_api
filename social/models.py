@@ -10,22 +10,15 @@ class Profile(models.Model):
         UNKNOWN = "unknown"
 
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="profiles"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profiles"
     )
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     avatar = models.URLField(max_length=255, blank=True)
     biography = models.TextField(blank=True)
-    gender = models.CharField(
-        max_length=50,
-        choices=GenderChoices.choices
-    )
+    gender = models.CharField(max_length=50, choices=GenderChoices.choices)
     following = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="followers",
-        blank=True
+        settings.AUTH_USER_MODEL, related_name="followers", blank=True
     )
 
     def __str__(self):
@@ -37,16 +30,12 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=70)
     content = models.TextField()
-    media_attachments = models.URLField(max_length=255,
-                                        blank=True)
+    media_attachments = models.URLField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(Profile,
-                                on_delete=models.CASCADE,
-                                related_name="posts")
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
     hashtag = models.CharField(max_length=50, blank=True)
 
     class Meta:
