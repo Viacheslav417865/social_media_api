@@ -5,6 +5,6 @@ from social.views import ProfileViewSet, PostViewSet
 router = routers.DefaultRouter()
 router.register("profiles", ProfileViewSet)
 router.register("posts", PostViewSet)
-urlpatterns = [path("", include(router.urls))]
+urlpatterns = router.urls
 
 app_name = "social"

@@ -41,7 +41,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
         if last_name:
             queryset = queryset.filter(last_name__icontains=last_name)
         if gender:
-            queryset = queryset.filter(gender=gender)
+            queryset = queryset.filter(gender__icontains=gender)
         return queryset.distinct()
 
     def perform_create(self, serializer):

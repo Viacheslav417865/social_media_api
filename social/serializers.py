@@ -64,9 +64,7 @@ class ProfileDetailSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_following(obj):
-        return [
-            following_user.profiles.full_name for following_user in obj.following.all()
-        ]
+        return list(obj.following.all().values_list("full_name", flat=True))
 
 
 class ProfileCreateUpdateSerializer(serializers.ModelSerializer):

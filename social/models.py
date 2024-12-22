@@ -35,7 +35,6 @@ class Post(models.Model):
     content = models.TextField()
     media_attachments = models.URLField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
     hashtag = models.CharField(max_length=50, blank=True)
 
     class Meta:
