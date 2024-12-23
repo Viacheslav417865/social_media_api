@@ -82,8 +82,12 @@ WSGI_APPLICATION = "social_media.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DB", "your_db"),
+        "USER": os.getenv("POSTGRES_USER", "your_user"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "your_password"),
+        "HOST": os.getenv("POSTGRES_HOST", "db"),
+        "PORT": os.getenv("POSTGRES_PORT", 5432),
     }
 }
 
